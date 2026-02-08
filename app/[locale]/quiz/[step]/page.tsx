@@ -1,29 +1,30 @@
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
-import { getStepPath, isValidStep, normalizeStep } from "@/lib/quiz-steps";
-import StepOne from "@/features/quiz/steps/first";
+import { getStepPath, isValidStep, normalizeStep } from '@/lib/quiz-steps';
+import StepOne from '@/features/quiz/steps/first';
 
 export default async function QuizStepPage({
-  params,
+    params,
 }: {
-  params: Promise<{ step: string }>;
+    params: Promise<{ step: string }>;
 }) {
-  const { step } = await params;
-  const stepNumber = Number(step);
+    const { step } = await params;
+    const stepNumber = Number(step);
 
-  if (!isValidStep(stepNumber)) {
-    const safeStep = normalizeStep(stepNumber);
-    redirect(getStepPath(safeStep));
-  }
+    if (!isValidStep(stepNumber)) {
+        const safeStep = normalizeStep(stepNumber);
 
-  if (stepNumber === 1) {
-    return <StepOne />;
-  }
+        redirect(getStepPath(safeStep));
+    }
 
-  return (
-    <div className="p-8 text-center">
-      <h2 className="text-2xl font-bold">Step {stepNumber}</h2>
-      <p className="text-gray-500">Not implemented yet</p>
-    </div>
-  );
+    if (stepNumber === 1) {
+        return <StepOne />;
+    }
+
+    return (
+        <div className="p-8 text-center">
+            <h2 className="text-2xl font-bold">Step {stepNumber}</h2>
+            <p className="text-gray-500">Not implemented yet</p>
+        </div>
+    );
 }

@@ -1,0 +1,64 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+import { useMemo } from 'react';
+
+import ProgressBar from '@/components/ui/progress-bar';
+import { ArrowBack } from '@/components/ui/icons';
+import { getPrevStep, getStepPath, TOTAL_QUIZ_STEPS } from '@/lib/quiz-steps';
+import { useRouter } from '@/i18n/routing';
+
+const QuizNavbar = () => {
+    const router = useRouter();
+    const params = useParams();
+
+    const step = useMemo(() => {
+        const s = params?.step;
+
+        return typeof s === 'string' ? parseInt(s, 10) : 1;
+    }, [params?.step]);
+
+    const handleNavBack = () => {
+        if (step > 1) {
+            const prevStep = getPrevStep(step);
+
+            router.push(getStepPath(prevStep));
+        } else {
+            // If step 1, maybe go back to home or do nothing?
+            // Old app: if (stepId >= 2) check.
+            // So step 1 has no back action.
+            router.back();
+        }
+    };
+
+    return (
+        <div className="mb-6 text-center font-semibold">
+            <div className="mb-4 flex items-center justify-between">
+                <div
+                    onClick={handleNavBack}
+                    className="flex h-[24px] w-[24px] items-center justify-center hover:cursor-pointer"
+                >
+                    {step > 1 && <ArrowBack />}
+                </div>
+
+                <div className="text-lg">
+                    <span className="self-center text-[#E4229C]">{step}</span>
+                    <span className="text-zinc-500">/{TOTAL_QUIZ_STEPS}</span>
+                </div>
+
+                {/* Placeholder for symmetry or future actions (e.g. close) */}
+                <div className="w-[24px]"></div>
+            </div>
+
+            <ProgressBar
+                progressInfo={{
+                    step: step,
+                    color: '#E4229C',
+                }}
+                totalSteps={TOTAL_QUIZ_STEPS}
+            />
+        </div>
+    );
+};
+
+export default QuizNavbar;
