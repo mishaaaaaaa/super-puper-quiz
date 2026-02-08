@@ -1,0 +1,55 @@
+{
+  "secondStep": {
+    "title": "¿Con qué género te identificas?",
+    "subtitle": "Por favor, comparte cómo te identificas",
+    "labelMale": "Masculino",
+    "labelFemale": "Femenino",
+    "labelOther": "Otro"
+  },
+  "thirdStep": {
+    "title": "¿Cuál es tu edad?",
+    "years": "años"
+  },
+  "fourthStep": {
+    "titleFirstPart": "¿Qué es lo que más",
+    "hate": "odias",
+    "titleSecondPart": "en un libro?",
+    "labelLackLogic": "Falta de lógica",
+    "labelSlowSpeed": "Velocidad lenta",
+    "labelLackHumor": "Falta de humor",
+    "labelGenericEnding": "Final demasiado genérico"
+  },
+  "fifthStep": {
+    "title": "¿Cuáles son tus temas favoritos?",
+    "subtitle": "Elige hasta 3 temas que te gusten",
+    "werewolf": "Hombre lobo",
+    "action": "Acción",
+    "royalObsession": "Obsesión real",
+    "billionaire": "Billonario",
+    "romance": "Romance",
+    "youngAdult": "Joven adulto",
+    "badBoy": "Chico malo"
+  },
+  "analyzing": {
+    "title": "Encontrando colecciones para ti..."
+  },
+  "emailSubmit": {
+    "title": "Correo electrónico",
+    "subtitle": "Ingrese su correo electrónico para obtener acceso completo",
+    "policyAndTerms": "Al continuar, acepto con",
+    "privacyPolicy": "Política de privacidad",
+    "terms": "Términos de uso.",
+    "and": "y",
+    "emailPlaceholder": "Su correo electrónico",
+    "invalidEmail": "Correo electrónico inválido"
+  },
+  "finalStep": {
+    "title": "Gracias",
+    "subtitle": "por apoyarnos y aprobar el cuestionario",
+    "dowloadAnswersBtn": "Descargar mis respuestas",
+    "retakeBtn": "Repetir cuestionario"
+  },
+  "btn": {
+    "nextLabel": "Siguiente"
+  }
+}

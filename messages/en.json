@@ -1,0 +1,55 @@
+{
+  "secondStep": {
+    "title": "What gender do you identify with?",
+    "subtitle": "Please share how do you identify yourself",
+    "labelMale": "Male",
+    "labelFemale": "Female",
+    "labelOther": "Other"
+  },
+  "thirdStep": {
+    "title": "What is your age?",
+    "years": "years"
+  },
+  "fourthStep": {
+    "titleFirstPart": "What do you",
+    "hate": "hate",
+    "titleSecondPart": "the most in a book?",
+    "labelLackLogic": "Lack of logic",
+    "labelSlowSpeed": "A slow speed",
+    "labelLackHumor": "Lack of humor",
+    "labelGenericEnding": "Way too generic ending"
+  },
+  "fifthStep": {
+    "title": "What are your favorite topics?",
+    "subtitle": "Choose up to 3 topics you like",
+    "werewolf": "Werewolf",
+    "action": "Action",
+    "royalObsession": "Royal Obsession",
+    "billionaire": "Billionaire",
+    "romance": "Romance",
+    "youngAdult": "Young Adult",
+    "badBoy": "Bad Boy"
+  },
+  "analyzing": {
+    "title": "Finding collections for you..."
+  },
+  "emailSubmit": {
+    "title": "Email",
+    "subtitle": "Enter your email to get full access",
+    "policyAndTerms": "By continuing I agree with",
+    "privacyPolicy": "Privacy policy",
+    "terms": "Terms of use.",
+    "and": "and",
+    "emailPlaceholder": "Your email",
+    "invalidEmail": "Invalid email"
+  },
+  "finalStep": {
+    "title": "Thank you",
+    "subtitle": "for supporting us and passing quiz",
+    "dowloadAnswersBtn": "Download my answers",
+    "retakeBtn": "Retake quiz"
+  },
+  "btn": {
+    "nextLabel": "Next"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "secondStep": {
+    "title": "Avec quel genre vous identifiez-vous ?",
+    "subtitle": "Veuillez indiquer comment vous vous identifiez",
+    "labelMale": "Masculin",
+    "labelFemale": "Féminin",
+    "labelOther": "Autre"
+  },
+  "thirdStep": {
+    "title": "Quel âge avez-vous ?",
+    "years": "ans"
+  },
+  "fourthStep": {
+    "titleFirstPart": "Que détestez-vous",
+    "hate": "le plus",
+    "titleSecondPart": "dans un livre ?",
+    "labelLackLogic": "Manque de logique",
+    "labelSlowSpeed": "Vitesse lente",
+    "labelLackHumor": "Manque d'humour",
+    "labelGenericEnding": "Fin beaucoup trop générique"
+  },
+  "fifthStep": {
+    "title": "Quels sont vos sujets préférés ?",
+    "subtitle": "Choisissez jusqu'à 3 sujets que vous aimez",
+    "werewolf": "Loup-garou",
+    "action": "Action",
+    "royalObsession": "Obsession royale",
+    "billionaire": "Milliardaire",
+    "romance": "Romance",
+    "youngAdult": "Jeune adulte",
+    "badBoy": "Mauvais garçon"
+  },
+  "analyzing": {
+    "title": "Recherche de collections pour vous..."
+  },
+  "emailSubmit": {
+    "title": "Courriel",
+    "subtitle": "Entrez votre adresse e-mail pour obtenir un accès complet",
+    "policyAndTerms": "En continuant, j'accepte",
+    "privacyPolicy": "la politique de confidentialité",
+    "terms": "les conditions d'utilisation.",
+    "and": "et",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "invalidEmail": "Adresse e-mail invalide"
+  },
+  "finalStep": {
+    "title": "Merci",
+    "subtitle": "pour votre soutien et la réussite du questionnaire",
+    "dowloadAnswersBtn": "Télécharger mes réponses",
+    "retakeBtn": "Repasser le questionnaire"
+  },
+  "btn": {
+    "nextLabel": "Suivant"
+  }
+}

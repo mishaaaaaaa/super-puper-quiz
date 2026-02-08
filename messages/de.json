@@ -1,0 +1,55 @@
+{
+  "secondStep": {
+    "title": "Mit welchem Geschlecht identifizieren Sie sich?",
+    "subtitle": "Bitte teilen Sie mit, wie Sie sich identifizieren",
+    "labelMale": "Männlich",
+    "labelFemale": "Weiblich",
+    "labelOther": "Andere"
+  },
+  "thirdStep": {
+    "title": "Wie alt sind Sie?",
+    "years": "Jahre"
+  },
+  "fourthStep": {
+    "titleFirstPart": "Was mögen Sie",
+    "hate": "am wenigsten",
+    "titleSecondPart": "in einem Buch?",
+    "labelLackLogic": "Mangel an Logik",
+    "labelSlowSpeed": "Langsames Tempo",
+    "labelLackHumor": "Mangel an Humor",
+    "labelGenericEnding": "Allzu generisches Ende"
+  },
+  "fifthStep": {
+    "title": "Was sind Ihre Lieblingsthemen?",
+    "subtitle": "Wählen Sie bis zu 3 Themen, die Sie mögen",
+    "werewolf": "Werwolf",
+    "action": "Aktion",
+    "royalObsession": "Königliche Obsession",
+    "billionaire": "Milliardär",
+    "romance": "Romantik",
+    "youngAdult": "Jugendliche",
+    "badBoy": "Schlimmer Junge"
+  },
+  "analyzing": {
+    "title": "Sammlungen für Sie finden..."
+  },
+  "emailSubmit": {
+    "title": "E-Mail",
+    "subtitle": "Geben Sie Ihre E-Mail ein, um vollen Zugriff zu erhalten",
+    "policyAndTerms": "Indem ich fortfahre, stimme ich zu mit",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen.",
+    "and": "und",
+    "emailPlaceholder": "Ihre E-Mail",
+    "invalidEmail": "Ungültige E-Mail"
+  },
+  "finalStep": {
+    "title": "Danke",
+    "subtitle": "für Ihre Unterstützung und das Bestehen des Quiz",
+    "dowloadAnswersBtn": "Meine Antworten herunterladen",
+    "retakeBtn": "Quiz wiederholen"
+  },
+  "btn": {
+    "nextLabel": "Weiter"
+  }
+}
