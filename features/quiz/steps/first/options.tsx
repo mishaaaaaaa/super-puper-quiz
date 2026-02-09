@@ -33,6 +33,7 @@ export const FirstStepOptions = ({ variants }: FirstStepOptionsProps) => {
                     label={variant.label}
                     selected={answers[STORAGE_KEYS.I18N_LANGUAGE] === variant.code}
                     onSelect={() => handleSelect(variant.code)}
+                    customClass="items-start pl-5"
                 />
             ))}
         </div>

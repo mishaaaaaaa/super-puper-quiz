@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# eslint (local config to avoid IDE conflicts with other devs)
+eslint.config.mjs

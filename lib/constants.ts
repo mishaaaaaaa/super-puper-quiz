@@ -48,6 +48,6 @@ export const QUIZ_TOPICS = {
 export const TOTAL_QUIZ_STEPS = 5;
 
 export const LINKS = {
-    PRIVACY: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    TERMS: 'https://www.youtube.com/watch?v=hhuEsj93Q1U',
+    PRIVACY: 'https://www.youtube.com/watch?v=T_FQH49fMTA&list=RDT_FQH49fMTA&start_radio=1',
+    TERMS: 'https://www.forbes.com/sites/charliefink/2026/01/16/holywater-raises-additional-22-million-to-expand-ai-vertical-video-platform/',
 } as const;

@@ -27,7 +27,7 @@ export const StepTwoOptions = ({ variants }: StepTwoOptionsProps) => {
     };
 
     return (
-        <div className="mb-5 grid w-full max-w-4xl gap-y-3 lg:grid-cols-3 lg:gap-x-3">
+        <div className="mb-5 grid w-full max-w-4xl grid-cols-3 gap-3">
             {variants.map((variant) => (
                 <Card
                     key={variant.value}
@@ -35,6 +35,7 @@ export const StepTwoOptions = ({ variants }: StepTwoOptionsProps) => {
                     emoji={variant.emoji}
                     selected={answers[STORAGE_KEYS.GENDER] === variant.value}
                     onSelect={() => handleSelect(variant.value)}
+                    customClass="h-36"
                 />
             ))}
         </div>

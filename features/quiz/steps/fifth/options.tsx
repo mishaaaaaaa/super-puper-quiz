@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { useQuiz } from '@/context/quiz/quiz-provider';
 import Card from '@/components/ui/card';
@@ -38,6 +39,18 @@ export const StepFiveOptions = ({ variants, nextLabel, topicsByAge, children }: 
             .filter((v): v is Variant => !!v)
         : variants.slice(0, 7);
 
+    // Sync selected topics with visible variants when age changes
+    useEffect(() => {
+        if (!ageSpecificTopics) return;
+
+        const validTopics = new Set(ageSpecificTopics);
+        const filteredSelection = selectedTopics.filter((topic) => validTopics.has(topic));
+
+        if (filteredSelection.length !== selectedTopics.length) {
+            setAnswer(STORAGE_KEYS.FAV_LIST, filteredSelection);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [age]);
 
     const variantColumns = visibleVariants.reduce<Variant[][]>((acc, variant, i) => {
         if (i % 2 === 0) acc.push([]);
