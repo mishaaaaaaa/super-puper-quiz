@@ -28,7 +28,13 @@
     "billionaire": "Milliardär",
     "romance": "Romantik",
     "youngAdult": "Jugendliche",
-    "badBoy": "Schlimmer Junge"
+    "badBoy": "Schlimmer Junge",
+    "vampire": "Vampir",
+    "dragon": "Drache",
+    "darkRomance": "Dunkle Romantik",
+    "enemiesToLovers": "Vom Feind zum Geliebten",
+    "secondChance": "Zweite Chance",
+    "detective": "Detektiv"
   },
   "analyzing": {
     "title": "Sammlungen für Sie finden..."

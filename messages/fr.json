@@ -28,7 +28,13 @@
     "billionaire": "Milliardaire",
     "romance": "Romance",
     "youngAdult": "Jeune adulte",
-    "badBoy": "Mauvais garçon"
+    "badBoy": "Mauvais garçon",
+    "vampire": "Vampire",
+    "dragon": "Dragon",
+    "darkRomance": "Dark Romance",
+    "enemiesToLovers": "Ennemis amoureux",
+    "secondChance": "Seconde chance",
+    "detective": "Détective"
   },
   "analyzing": {
     "title": "Recherche de collections pour vous..."

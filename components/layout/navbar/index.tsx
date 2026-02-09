@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { useRouter } from '@/i18n/routing';
 import ProgressBar from '@/components/ui/progress-bar';
 import { ArrowBack } from '@/components/ui/icons';
-import { getPrevStep, getStepPath, TOTAL_QUIZ_STEPS } from '@/lib/quiz-steps';
+import { getPrevStepPath, TOTAL_QUIZ_STEPS } from '@/lib/quiz-steps';
 
 
 const QuizNavbar = () => {
@@ -20,9 +20,7 @@ const QuizNavbar = () => {
 
     const handleNavBack = () => {
         if (step > 1) {
-            const prevStep = getPrevStep(step);
-
-            router.push(getStepPath(prevStep));
+            router.push(getPrevStepPath(step));
         } else {
             router.back();
         }

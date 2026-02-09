@@ -1,11 +1,10 @@
 'use client';
 
-import { useCallback } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { useQuiz } from '@/context/quiz/quiz-provider';
 import Card from '@/components/ui/card';
 import Button from '@/components/ui/button';
-import { getNextStep, getStepPath } from '@/lib/quiz-steps';
+import { getNextStepPath } from '@/lib/quiz-steps';
 import { STORAGE_KEYS } from '@/lib/constants';
 
 type Variant = {
@@ -28,32 +27,25 @@ export const StepFourOptions = ({ variants, nextLabel, children }: StepFourOptio
         ? (rawValue as string[])
         : [];
 
-    const handleSelect = useCallback(
-        (value: string) => {
-            // Get latest state directly
-            const currentList = Array.isArray(answers[STORAGE_KEYS.HATE_LIST])
-                ? (answers[STORAGE_KEYS.HATE_LIST] as string[])
-                : [];
+    const handleSelect = (value: string) => {
+        const currentList = Array.isArray(answers[STORAGE_KEYS.HATE_LIST])
+            ? (answers[STORAGE_KEYS.HATE_LIST] as string[])
+            : [];
 
-            let newAnswers = [...currentList];
+        let newAnswers = [...currentList];
 
-            if (newAnswers.includes(value)) {
-                newAnswers = newAnswers.filter((item) => item !== value);
-            } else {
-                newAnswers.push(value);
-            }
+        if (newAnswers.includes(value)) {
+            newAnswers = newAnswers.filter((item) => item !== value);
+        } else {
+            newAnswers.push(value);
+        }
 
-            setAnswer(STORAGE_KEYS.HATE_LIST, newAnswers);
-        },
-        [answers, setAnswer],
-    );
+        setAnswer(STORAGE_KEYS.HATE_LIST, newAnswers);
+    };
 
-    const handleNext = useCallback(() => {
-        const nextStep = getNextStep(4);
-        const output = getStepPath(nextStep);
-
-        router.push(output);
-    }, [router]);
+    const handleNext = () => {
+        router.push(getNextStepPath(4));
+    };
 
     return (
         <div className="flex h-full flex-col justify-between pb-8 px-6">

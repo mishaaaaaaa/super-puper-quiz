@@ -28,7 +28,13 @@
     "billionaire": "Billonario",
     "romance": "Romance",
     "youngAdult": "Joven adulto",
-    "badBoy": "Chico malo"
+    "badBoy": "Chico malo",
+    "vampire": "Vampiro",
+    "dragon": "Dragón",
+    "darkRomance": "Romance oscuro",
+    "enemiesToLovers": "De enemigos a amantes",
+    "secondChance": "Segunda oportunidad",
+    "detective": "Detective"
   },
   "analyzing": {
     "title": "Encontrando colecciones para ti..."

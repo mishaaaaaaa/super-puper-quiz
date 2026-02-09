@@ -22,6 +22,29 @@ export const SELECT_TYPES = {
     EMAIL: 'email',
 } as const;
 
+export const USERS_AGE = {
+    JUNIOR: '18-29 years',
+    MIDDLE: '30-39 years',
+    SENIOR: '40-49 years',
+    SENIOR_PLUS: '50+',
+};
+
+export const QUIZ_TOPICS = {
+    WEREWOLF: 'Werewolf',
+    ACTION: 'Action',
+    ROYAL_OBSESSION: 'Royal Obsession',
+    BILLIONAIRE: 'Billionaire',
+    ROMANCE: 'Romance',
+    YOUNG_ADULT: 'Young Adult',
+    BAD_BOY: 'Bad Boy',
+    VAMPIRE: 'Vampire',
+    DRAGON: 'Dragon',
+    DARK_ROMANCE: 'Dark Romance',
+    ENEMIES_TO_LOVERS: 'Enemies to Lovers',
+    SECOND_CHANCE: 'Second Chance',
+    DETECTIVE: 'Detective',
+} as const;
+
 export const TOTAL_QUIZ_STEPS = 5;
 
 export const LINKS = {

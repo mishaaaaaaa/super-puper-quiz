@@ -1,6 +1,5 @@
 'use client';
 
-import { useCallback } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { useQuiz } from '@/context/quiz/quiz-provider';
 import Card from '@/components/ui/card';
@@ -16,49 +15,57 @@ type Variant = {
 type StepFiveOptionsProps = {
     variants: Variant[];
     nextLabel: string;
+    topicsByAge: Record<string, string[]>;
     children: React.ReactNode;
 };
 
-export const StepFiveOptions = ({ variants, nextLabel, children }: StepFiveOptionsProps) => {
+export const StepFiveOptions = ({ variants, nextLabel, topicsByAge, children }: StepFiveOptionsProps) => {
     const router = useRouter();
     const { setAnswer, answers } = useQuiz();
 
-    const rawValue = answers[STORAGE_KEYS.FAV_LIST];
-    const currentAnswers: string[] = Array.isArray(rawValue)
-        ? (rawValue as string[])
+    const savedValue = answers[STORAGE_KEYS.FAV_LIST];
+    const selectedTopics: string[] = Array.isArray(savedValue)
+        ? (savedValue as string[])
         : [];
 
-    const handleSelect = useCallback(
-        (value: string) => {
-            // Get latest state directly
-            const currentList = Array.isArray(answers[STORAGE_KEYS.FAV_LIST])
-                ? (answers[STORAGE_KEYS.FAV_LIST] as string[])
-                : [];
+    // Filter variants based on age
+    const age = answers[STORAGE_KEYS.AGE] as string;
+    const ageSpecificTopics = topicsByAge[age];
 
-            let newAnswers = [...currentList];
+    const visibleVariants = ageSpecificTopics
+        ? ageSpecificTopics
+            .map((topic) => variants.find((v) => v.value === topic))
+            .filter((v): v is Variant => !!v)
+        : variants.slice(0, 7);
 
-            if (newAnswers.includes(value)) {
-                newAnswers = newAnswers.filter((item) => item !== value);
-            } else {
-                newAnswers.push(value);
-            }
 
-            setAnswer(STORAGE_KEYS.FAV_LIST, newAnswers);
-        },
-        [answers, setAnswer],
-    );
+    const variantColumns = visibleVariants.reduce<Variant[][]>((acc, variant, i) => {
+        if (i % 2 === 0) acc.push([]);
 
-    const handleNext = useCallback(() => {
+        acc[acc.length - 1].push(variant);
+
+        return acc;
+    }, []);
+
+    const handleSelect = (value: string) => {
+        const prevSelection = Array.isArray(answers[STORAGE_KEYS.FAV_LIST])
+            ? (answers[STORAGE_KEYS.FAV_LIST] as string[])
+            : [];
+
+        let nextSelection = [...prevSelection];
+
+        if (nextSelection.includes(value)) {
+            nextSelection = nextSelection.filter((item) => item !== value);
+        } else {
+            nextSelection.push(value);
+        }
+
+        setAnswer(STORAGE_KEYS.FAV_LIST, nextSelection);
+    };
+
+    const handleNext = () => {
         router.push('/analyzing');
-    }, [router]);
-
-    // Explicit column mapping for the specific scroll + honeycomb layout
-    const columns = [
-        [variants[0], variants[4]], // Col 1: Werewolf, Romance
-        [variants[1], variants[5]], // Col 2: Action, Young Adult (Shifted)
-        [variants[2], variants[6]], // Col 3: Royal Obsession, Bad Boy
-        [variants[3]],               // Col 4: Billionaire (Shifted)
-    ];
+    };
 
     return (
         <div className="flex w-full flex-1 flex-col justify-between overflow-hidden pb-8">
@@ -68,26 +75,26 @@ export const StepFiveOptions = ({ variants, nextLabel, children }: StepFiveOptio
                 {/* Horizontal Scroll Container */}
                 <div className="w-full overflow-x-auto pb-4 no-scrollbar touch-pan-x">
                     <div className="flex w-max items-start mx-auto pl-4">
-                        {columns.map((colItems, colIndex) => (
+                        {variantColumns.map((columnItems, colIndex) => (
                             <div
                                 key={colIndex}
                                 className={`flex flex-col gap-4 lg:gap-5 lg:mr-5 ${
-                                    // Shift columns 1 and 3 (0-indexed 1 and 3) down
+                                    // Shift columns 1 and 3 (0-indexed 1, 3, etc.) down
                                     colIndex % 2 !== 0 ? 'mt-12' : 'mt-0'
                                     // eslint-disable-next-line @stylistic/indent
                                     }`}
                             >
-                                {colItems.filter(Boolean).map((variant) => (
+                                {columnItems.filter(Boolean).map((variant) => (
                                     <div key={variant.value} className="relative z-10 first:z-20 hover:z-30">
                                         <Card
                                             label={variant.label}
                                             emoji={variant.emoji}
                                             variant="outline"
                                             customClass="!rounded-full w-[100px] h-[100px] shrink-0 flex flex-col items-center justify-center p-2 text-xs bg-[#36173D]"
-                                            selected={currentAnswers.includes(variant.value)}
+                                            selected={selectedTopics.includes(variant.value)}
                                             onSelect={() => handleSelect(variant.value)}
                                             limit={3}
-                                            cardList={currentAnswers}
+                                            cardList={selectedTopics}
                                         />
                                     </div>
                                 ))}
@@ -100,7 +107,7 @@ export const StepFiveOptions = ({ variants, nextLabel, children }: StepFiveOptio
             <div className="flex justify-center px-4 shrink-0">
                 <Button
                     onClick={handleNext}
-                    disabled={currentAnswers.length === 0}
+                    disabled={selectedTopics.length === 0}
                     customClass="!w-full max-w-[320px]"
                 >
                     {nextLabel}

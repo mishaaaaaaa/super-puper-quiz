@@ -22,7 +22,7 @@
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-albert-sans), Arial, Helvetica, sans-serif;
 }
 
 input:-webkit-autofill,

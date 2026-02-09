@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import QuizNavbar from '@/components/ui/navbar';
+import QuizNavbar from '@/components/layout/navbar';
 
 export default function QuizLayout({ children }: { children: ReactNode }) {
     return (
