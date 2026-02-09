@@ -1,16 +1,25 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useQuiz } from '@/context/quiz/quiz-provider';
 import Card from '@/components/ui/card';
 import Button from '@/components/ui/button';
 import { STORAGE_KEYS } from '@/lib/constants';
 
-export default function StepFive() {
-    const t = useTranslations('fifthStep');
-    const tBtn = useTranslations('btn');
+type Variant = {
+    value: string;
+    label: string;
+    emoji: string;
+};
+
+type StepFiveOptionsProps = {
+    variants: Variant[];
+    nextLabel: string;
+    children: React.ReactNode;
+};
+
+export const StepFiveOptions = ({ variants, nextLabel, children }: StepFiveOptionsProps) => {
     const router = useRouter();
     const { setAnswer, answers } = useQuiz();
 
@@ -43,16 +52,6 @@ export default function StepFive() {
         router.push('/analyzing');
     }, [router]);
 
-    const variants = [
-        { value: 'Werewolf', label: t('werewolf'), emoji: '🐺' },
-        { value: 'Action', label: t('action'), emoji: '💃' },
-        { value: 'Royal Obsession', label: t('royalObsession'), emoji: '👑' },
-        { value: 'Billionaire', label: t('billionaire'), emoji: '🤑' },
-        { value: 'Romance', label: t('romance'), emoji: '🥰' },
-        { value: 'Young Adult', label: t('youngAdult'), emoji: '💁‍♀️' },
-        { value: 'Bad Boy', label: t('badBoy'), emoji: '🤠' },
-    ];
-
     // Explicit column mapping for the specific scroll + honeycomb layout
     const columns = [
         [variants[0], variants[4]], // Col 1: Werewolf, Romance
@@ -64,10 +63,7 @@ export default function StepFive() {
     return (
         <div className="flex w-full flex-1 flex-col justify-between overflow-hidden pb-8">
             <div className="flex flex-col items-center overflow-hidden">
-                <div className="mb-2 text-center px-4 shrink-0">
-                    <h1 className="mb-2 text-2xl font-semibold font-nunito">{t('title')}</h1>
-                    <div className="mb-4 text-zinc-400 text-sm font-nunito">{t('subtitle')}</div>
-                </div>
+                {children}
 
                 {/* Horizontal Scroll Container */}
                 <div className="w-full overflow-x-auto pb-4 no-scrollbar touch-pan-x">
@@ -107,9 +103,9 @@ export default function StepFive() {
                     disabled={currentAnswers.length === 0}
                     customClass="!w-full max-w-[320px]"
                 >
-                    {tBtn('nextLabel')}
+                    {nextLabel}
                 </Button>
             </div>
         </div>
     );
-}
+};

@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useQuiz } from '@/context/quiz/quiz-provider';
 import Card from '@/components/ui/card';
@@ -9,9 +8,18 @@ import Button from '@/components/ui/button';
 import { getNextStep, getStepPath } from '@/lib/quiz-steps';
 import { STORAGE_KEYS } from '@/lib/constants';
 
-export default function StepFour() {
-    const t = useTranslations('fourthStep');
-    const tBtn = useTranslations('btn');
+type Variant = {
+    label: string;
+    value: string;
+};
+
+type StepFourOptionsProps = {
+    variants: Variant[];
+    nextLabel: string;
+    children: React.ReactNode;
+};
+
+export const StepFourOptions = ({ variants, nextLabel, children }: StepFourOptionsProps) => {
     const router = useRouter();
     const { setAnswer, answers } = useQuiz();
 
@@ -47,23 +55,10 @@ export default function StepFour() {
         router.push(output);
     }, [router]);
 
-    const variants = [
-        { label: t('labelLackLogic'), value: 'Lack of logic' },
-        { label: t('labelSlowSpeed'), value: 'A slow speed' },
-        { label: t('labelLackHumor'), value: 'Lack of humor' },
-        { label: t('labelGenericEnding'), value: 'Way too generic ending' },
-    ];
-
     return (
         <div className="flex h-full flex-col justify-between pb-8 px-6">
             <div className="flex flex-col items-center">
-                <div className="mb-6 text-center">
-                    <h1 className="mb-6 text-3xl font-semibold font-albert">
-                        {t('titleFirstPart')}{' '}
-                        <span className="text-[#EB2F9A]">{t('hate')}</span>{' '}
-                        {t('titleSecondPart')}
-                    </h1>
-                </div>
+                {children}
 
                 <div className="mb-5 grid w-full max-w-4xl gap-y-3 lg:grid-cols-2 lg:gap-x-3">
                     {variants.map((variant) => (
@@ -85,9 +80,9 @@ export default function StepFour() {
                     disabled={currentAnswers.length === 0}
                     customClass="!w-full max-w-[320px]"
                 >
-                    {tBtn('nextLabel')}
+                    {nextLabel}
                 </Button>
             </div>
         </div>
     );
-}
+};
