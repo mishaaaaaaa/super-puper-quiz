@@ -6,6 +6,7 @@ import {
     useState,
     useCallback,
     ReactNode,
+    useEffect,
 } from 'react';
 import { STORAGE_KEYS } from '@/lib/constants';
 
@@ -42,7 +43,12 @@ const loadInitialAnswers = (): Record<string, AnswerValue> => {
 };
 
 export function QuizProvider({ children }: { children: ReactNode }) {
-    const [answers, setAnswers] = useState<Record<string, AnswerValue>>(loadInitialAnswers);
+    const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setAnswers(() => loadInitialAnswers());
+    }, []);
 
     const setAnswer = useCallback((key: string, value: AnswerValue) => {
         setAnswers((prev) => { return { ...prev, [key]: value }; });

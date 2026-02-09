@@ -55,7 +55,7 @@ export default function StepFour() {
     ];
 
     return (
-        <div className="flex h-full flex-col justify-between pb-8">
+        <div className="flex h-full flex-col justify-between pb-8 px-6">
             <div className="flex flex-col items-center">
                 <div className="mb-6 text-center">
                     <h1 className="mb-6 text-3xl font-semibold font-albert">

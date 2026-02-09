@@ -72,7 +72,7 @@ const Card = ({
         isSelected && variant === 'default' && 'bg-[#460741] border-2 border-[#E4229C]',
         isSelected && variant === 'outline' && 'bg-[#36173D] border-2 border-[#E4229C]',
         isDisabled && 'bg-[#3d2842] hover:cursor-default',
-        withCheckbox && 'flex justify-between items-center',
+        withCheckbox && 'flex justify-between items-center gap-3',
         customClass,
     ]
         .filter(Boolean)

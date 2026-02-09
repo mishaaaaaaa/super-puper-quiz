@@ -115,7 +115,7 @@ export const EmailScreen = () => {
                     </div>
                 </div>
 
-                <div className="w-full max-w-md mb-8">
+                <div className="w-full max-w-md mb-8 flex justify-center">
                     <Button
                         disabled={!isValidEmail || !email}
                         onClick={handleSubmit}
