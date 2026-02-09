@@ -5,7 +5,6 @@ import {
     useContext,
     useState,
     useCallback,
-    useEffect,
     ReactNode,
 } from 'react';
 import { STORAGE_KEYS } from '@/lib/constants';

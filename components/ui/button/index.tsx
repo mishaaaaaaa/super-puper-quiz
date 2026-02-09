@@ -16,7 +16,7 @@ const Button = ({
     disabled = false,
 }: ButtonProps) => {
     const baseClasses =
-        'w-full md:w-auto md:px-48 text-center py-4 rounded-3xl hover:cursor-pointer font-albert font-bold';
+        'w-full md:w-auto md:px-12 text-center py-4 rounded-3xl hover:cursor-pointer font-albert font-bold';
     const stateClasses = disabled
         ? 'bg-[#6E0D58] text-gray-400 cursor-not-allowed'
         : 'bg-[#E4229C]';
