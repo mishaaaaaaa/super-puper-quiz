@@ -2,11 +2,11 @@
 
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
-
+import { useRouter } from '@/i18n/routing';
 import ProgressBar from '@/components/ui/progress-bar';
 import { ArrowBack } from '@/components/ui/icons';
 import { getPrevStep, getStepPath, TOTAL_QUIZ_STEPS } from '@/lib/quiz-steps';
-import { useRouter } from '@/i18n/routing';
+
 
 const QuizNavbar = () => {
     const router = useRouter();

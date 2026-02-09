@@ -2,10 +2,10 @@
 
 import { useCallback } from 'react';
 import { useRouter } from '@/i18n/routing';
-import Card from '@/components/ui/card';
-import { LANG_NAMES, STORAGE_KEYS } from '@/lib/constants';
 import { useQuiz } from '@/context/quiz/quiz-provider';
+import Card from '@/components/ui/card';
 import { getNextStep, getStepPath } from '@/lib/quiz-steps';
+import { LANG_NAMES, STORAGE_KEYS } from '@/lib/constants';
 
 export default function StepOne() {
     const router = useRouter();

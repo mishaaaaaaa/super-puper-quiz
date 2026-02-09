@@ -1,13 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
-
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
-import Card from '@/components/ui/card';
-import { STORAGE_KEYS } from '@/lib/constants';
 import { useQuiz } from '@/context/quiz/quiz-provider';
+import Card from '@/components/ui/card';
 import { getNextStep, getStepPath } from '@/lib/quiz-steps';
+import { STORAGE_KEYS } from '@/lib/constants';
 
 export default function StepThree() {
     const t = useTranslations('thirdStep');
