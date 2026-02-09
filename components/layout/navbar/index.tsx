@@ -41,7 +41,6 @@ const QuizNavbar = () => {
                     <span className="text-white">/{TOTAL_QUIZ_STEPS}</span>
                 </div>
 
-                {/* Placeholder for symmetry or future actions (e.g. close) */}
                 <div className="w-[24px]"></div>
             </div>
 

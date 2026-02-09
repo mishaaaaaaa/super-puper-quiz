@@ -10,6 +10,96 @@ import { DownloadIcon } from '@/components/ui/icons';
 
 const CSV_HEADERS = ['Order', 'title', 'type', 'answer'];
 
+const formatAnswer = (val: string | string[] | undefined) => {
+    if (Array.isArray(val)) return val.join(', ');
+
+    return val || '';
+};
+
+const escapeCsv = (str: string | number) => {
+    const stringValue = String(str);
+
+    if (
+        stringValue.includes(',') ||
+        stringValue.includes('"') ||
+        stringValue.includes('\n')
+    ) {
+
+        return `"${stringValue.replace(/"/g, '""')}"`;
+    }
+
+    return stringValue;
+};
+
+const generateCsvContent = (answers: Record<string, string | string[]>) => {
+    const langCode = (answers[STORAGE_KEYS.I18N_LANGUAGE] || 'en') as keyof typeof LANG_NAMES;
+
+    const rows = [
+        {
+            order: 1,
+            title: 'What is your preferred language?',
+            type: 'single-select',
+            answer: LANG_NAMES[langCode] || LANG_NAMES.en,
+        },
+        {
+            order: 2,
+            title: 'What gender do you identify with?',
+            type: 'single-select-image',
+            answer: formatAnswer(answers[STORAGE_KEYS.GENDER]),
+        },
+        {
+            order: 3,
+            title: 'What is your age?',
+            type: 'single-select',
+            answer: formatAnswer(answers[STORAGE_KEYS.AGE]),
+        },
+        {
+            order: 4,
+            title: 'What do you hate the most in a book?',
+            type: 'multiple-select',
+            answer: formatAnswer(answers[STORAGE_KEYS.HATE_LIST]),
+        },
+        {
+            order: 5,
+            title: 'What are your favorite topics?',
+            type: 'bubble',
+            answer: formatAnswer(answers[STORAGE_KEYS.FAV_LIST]),
+        },
+        {
+            order: 6,
+            title: 'Email',
+            type: 'email',
+            answer: formatAnswer(answers[STORAGE_KEYS.EMAIL]),
+        },
+    ];
+
+    return [
+        CSV_HEADERS.join(','),
+        ...rows.map((row) =>
+            [
+                row.order,
+                escapeCsv(row.title),
+                escapeCsv(row.type),
+                escapeCsv(row.answer),
+            ].join(','),
+        ),
+    ].join('\n');
+};
+
+const downloadFile = (content: string, fileName: string) => {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', fileName);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+};
+
 export const ResultsScreen = () => {
     const t = useTranslations('finalStep');
     const router = useRouter();
@@ -21,89 +111,9 @@ export const ResultsScreen = () => {
     };
 
     const downloadCSV = () => {
-        const langCode = (answers[STORAGE_KEYS.I18N_LANGUAGE] || 'en') as keyof typeof LANG_NAMES;
+        const csvContent = generateCsvContent(answers);
 
-        const formatAnswer = (val: string | string[] | undefined) => {
-            if (Array.isArray(val)) return val.join(', ');
-
-            return val || '';
-        };
-
-        const rows = [
-            {
-                order: 1,
-                title: 'What is your preferred language?',
-                type: 'single-select',
-                answer: LANG_NAMES[langCode] || LANG_NAMES.en,
-            },
-            {
-                order: 2,
-                title: 'What gender do you identify with?',
-                type: 'single-select-image',
-                answer: formatAnswer(answers[STORAGE_KEYS.GENDER]),
-            },
-            {
-                order: 3,
-                title: 'What is your age?',
-                type: 'single-select',
-                answer: formatAnswer(answers[STORAGE_KEYS.AGE]),
-            },
-            {
-                order: 4,
-                title: 'What do you hate the most in a book?',
-                type: 'multiple-select',
-                answer: formatAnswer(answers[STORAGE_KEYS.HATE_LIST]),
-            },
-            {
-                order: 5,
-                title: 'What are your favorite topics?',
-                type: 'bubble',
-                answer: formatAnswer(answers[STORAGE_KEYS.FAV_LIST]),
-            },
-            {
-                order: 6,
-                title: 'Email',
-                type: 'email',
-                answer: formatAnswer(answers[STORAGE_KEYS.EMAIL]),
-            },
-        ];
-
-        const escapeCsv = (str: string | number) => {
-            const stringValue = String(str);
-
-            if (
-                stringValue.includes(',') ||
-                stringValue.includes('"') ||
-                stringValue.includes('\n')
-            ) {
-                return `"${stringValue.replace(/"/g, '""')}"`;
-            }
-
-            return stringValue;
-        };
-
-        const csvContent = [
-            CSV_HEADERS.join(','),
-            ...rows.map((row) =>
-                [
-                    row.order,
-                    escapeCsv(row.title),
-                    escapeCsv(row.type),
-                    escapeCsv(row.answer),
-                ].join(','),
-            ),
-        ].join('\n');
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-
-        link.setAttribute('href', url);
-        link.setAttribute('download', 'answers.csv');
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        downloadFile(csvContent, 'answers.csv');
     };
 
     return (
