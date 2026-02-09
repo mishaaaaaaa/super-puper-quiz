@@ -103,7 +103,7 @@ export const StepFiveOptions = ({ variants, nextLabel, topicsByAge, children }: 
                                             label={variant.label}
                                             emoji={variant.emoji}
                                             variant="outline"
-                                            customClass="!rounded-full w-[100px] h-[100px] shrink-0 flex flex-col items-center justify-center p-2 text-xs bg-[#36173D]"
+                                            customClass="!rounded-full w-[110px] h-[110px] shrink-0 flex flex-col items-center justify-center px-4 py-3 text-xs bg-[#36173D]"
                                             selected={selectedTopics.includes(variant.value)}
                                             onSelect={() => handleSelect(variant.value)}
                                             limit={3}
