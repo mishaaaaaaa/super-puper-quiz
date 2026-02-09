@@ -1,6 +1,6 @@
-import './globals.css';
+import Link from 'next/link';
 
-export default async function NotFound() {
+export default function NotFound() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center pb-20">
             <h1 className="text-[120px] leading-none font-bold text-[#e4229c] mb-2">
@@ -13,13 +13,12 @@ export default async function NotFound() {
                 The page you are looking for might have been removed, had its
                 name changed, or is temporarily unavailable.
             </p>
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a
+            <Link
                 href="/"
                 className="inline-block w-full md:w-auto px-12 md:px-24 py-4 rounded-3xl hover:cursor-pointer bg-[#E4229C] text-white font-bold transition-transform hover:scale-105 active:scale-95"
             >
                 Go Home
-            </a>
+            </Link>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import {
     useContext,
     useState,
     useCallback,
+    useEffect,
     ReactNode,
 } from 'react';
 import { STORAGE_KEYS } from '@/lib/constants';
@@ -13,12 +14,15 @@ type AnswerValue = string | string[];
 type QuizContextType = {
     answers: Record<string, AnswerValue>;
     setAnswer: (key: string, value: AnswerValue) => void;
+    clearAnswers: () => void;
 };
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
 const loadInitialAnswers = (): Record<string, AnswerValue> => {
     const loaded: Record<string, AnswerValue> = {};
+
+    if (typeof window === 'undefined') return loaded;
 
     Object.values(STORAGE_KEYS).forEach((key) => {
         const item = localStorage.getItem(key);
@@ -39,8 +43,11 @@ const loadInitialAnswers = (): Record<string, AnswerValue> => {
 };
 
 export function QuizProvider({ children }: { children: ReactNode }) {
-    const [answers, setAnswers] =
-        useState<Record<string, AnswerValue>>(loadInitialAnswers);
+    const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
+
+    useEffect(() => {
+        setAnswers(loadInitialAnswers());
+    }, []);
 
     const setAnswer = useCallback((key: string, value: AnswerValue) => {
         setAnswers((prev) => { return { ...prev, [key]: value }; });
@@ -52,8 +59,17 @@ export function QuizProvider({ children }: { children: ReactNode }) {
         }
     }, []);
 
+    const clearAnswers = useCallback(() => {
+        setAnswers({});
+        Object.values(STORAGE_KEYS).forEach((key) => {
+            if (key !== STORAGE_KEYS.I18N_LANGUAGE) {
+                localStorage.removeItem(key);
+            }
+        });
+    }, []);
+
     return (
-        <QuizContext.Provider value={{ answers, setAnswer }}>
+        <QuizContext.Provider value={{ answers, setAnswer, clearAnswers }}>
             {children}
         </QuizContext.Provider>
     );

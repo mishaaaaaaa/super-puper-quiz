@@ -32,12 +32,12 @@ export default function StepOne() {
     ];
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-full px-6">
             <div className="mb-6 text-center">
-                <h1 className="mb-6 text-3xl font-semibold">
+                <h1 className="mb-6 text-3xl font-semibold font-nunito">
                     What is your preferred language?
                 </h1>
-                <div className="mb-6 text-zinc-400">Choose language</div>
+                <div className="mb-6 text-zinc-400 font-nunito">Choose language</div>
             </div>
 
             <div className="mb-5 grid w-full max-w-4xl gap-y-3 lg:grid-cols-2 lg:gap-x-3">

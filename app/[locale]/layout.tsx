@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Niconne, Nunito_Sans, Albert_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { QuizProvider } from '@/context/quiz/quiz-provider';
 
 import '../globals.css';
 
@@ -12,6 +13,22 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
+    subsets: ['latin'],
+});
+
+const nunitoSans = Nunito_Sans({
+    variable: '--font-nunito-sans',
+    subsets: ['latin'],
+});
+
+const niconne = Niconne({
+    variable: '--font-niconne',
+    subsets: ['latin'],
+    weight: '400',
+});
+
+const albertSans = Albert_Sans({
+    variable: '--font-albert-sans',
     subsets: ['latin'],
 });
 
@@ -32,12 +49,15 @@ export default async function RootLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
+        <html
+            lang={locale}
+            className={`${geistSans.variable} ${geistMono.variable} ${niconne.variable} ${nunitoSans.variable} ${albertSans.variable}`}
+        >
+            <body className="antialiased">
                 <NextIntlClientProvider messages={messages}>
-                    {children}
+                    <QuizProvider>
+                        {children}
+                    </QuizProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

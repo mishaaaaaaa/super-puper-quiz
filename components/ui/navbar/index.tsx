@@ -24,15 +24,12 @@ const QuizNavbar = () => {
 
             router.push(getStepPath(prevStep));
         } else {
-            // If step 1, maybe go back to home or do nothing?
-            // Old app: if (stepId >= 2) check.
-            // So step 1 has no back action.
             router.back();
         }
     };
 
     return (
-        <div className="mb-6 text-center font-semibold">
+        <div className="mb-6 text-center font-semibold px-6">
             <div className="mb-4 flex items-center justify-between">
                 <div
                     onClick={handleNavBack}
@@ -43,7 +40,7 @@ const QuizNavbar = () => {
 
                 <div className="text-lg">
                     <span className="self-center text-[#E4229C]">{step}</span>
-                    <span className="text-zinc-500">/{TOTAL_QUIZ_STEPS}</span>
+                    <span className="text-white">/{TOTAL_QUIZ_STEPS}</span>
                 </div>
 
                 {/* Placeholder for symmetry or future actions (e.g. close) */}
