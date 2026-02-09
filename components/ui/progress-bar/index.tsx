@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type ProgressInfo = {
     step: number;
@@ -25,14 +25,16 @@ const ProgressBar = ({
 }: ProgressBarProps) => {
     const [width, setWidth] = useState('0%');
 
-    const convertStepToProgress = (step: number) =>
-        `${(step / totalSteps) * 100}%`;
+    const convertStepToProgress = useCallback(
+        (step: number) => `${(step / totalSteps) * 100}%`,
+        [totalSteps],
+    );
 
     useEffect(() => {
         requestAnimationFrame(() => {
             setWidth(convertStepToProgress(progressInfo.step));
         });
-    }, [progressInfo.step, totalSteps]);
+    }, [progressInfo.step, convertStepToProgress]);
 
     return (
         <>
